@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
-
 const sequelize = require('../config/database/database_connection');
+const bcrypt = require('bcryptjs');
 
 const User = sequelize.define(
   'user',
@@ -14,7 +14,9 @@ const User = sequelize.define(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: {
+        msg: 'The email address is already in use',
+      },
       set(value) {
         this.setDataValue('email', value.toLowerCase());
       },
@@ -22,7 +24,7 @@ const User = sequelize.define(
         isEmail: { msg: 'Please provide a valid email address' },
         notNull: { msg: 'Please provide a valid email address' },
         notEmpty: { msg: 'Please provide a valid email address' },
-        notUnique: { msg: 'This email address already exists' },
+        // notUnique: { msg: 'This email address already exists' },
       },
     },
     password: {
@@ -56,5 +58,10 @@ const User = sequelize.define(
     timestamps: false,
   }
 );
+
+User.beforeCreate(async (user) => {
+  const hashedPassword = await bcrypt.hash(user.password, 10);
+  user.password = hashedPassword;
+});
 
 module.exports = User;
