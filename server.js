@@ -6,11 +6,11 @@ const app = require('./app');
 const PORT = process.env.PORT || 8000;
 
 // Import databases
-const db = require('./models/users');
+const db = require('./models/user');
 
 // Start server
 db.sequelize
-  .sync()
+  .sync({ alter: true })
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
