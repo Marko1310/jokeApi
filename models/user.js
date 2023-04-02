@@ -22,6 +22,7 @@ const User = sequelize.define(
         isEmail: { msg: 'Please provide a valid email address' },
         notNull: { msg: 'Please provide a valid email address' },
         notEmpty: { msg: 'Please provide a valid email address' },
+        notUnique: { msg: 'This email address already exists' },
       },
     },
     password: {

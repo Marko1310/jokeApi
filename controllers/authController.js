@@ -2,11 +2,11 @@ const User = require('../models/user');
 
 // handle errors
 const handleErrors = (err) => {
+  console.log(err);
   let errors = { email: '', password: '', firstName: '', lastName: '' };
 
   //Validation errors
   err.forEach((error) => {
-    console.log(error.message);
     if (error.message.includes('email')) {
       errors.email = error.message;
     }
@@ -18,6 +18,9 @@ const handleErrors = (err) => {
     }
     if (error.message.includes('Last name')) {
       errors.lastName = error.message;
+    }
+    if (error.message.includes('notUnique')) {
+      errors.email = 'This email already exists';
     }
   });
   return errors;
