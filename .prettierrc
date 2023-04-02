@@ -1,0 +1,6 @@
+{
+  "chain": "never",
+  "singleQuote": true,
+  "semi": true,
+  "printWidth": 80
+}
