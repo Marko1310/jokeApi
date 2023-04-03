@@ -1,8 +1,9 @@
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+require('dotenv').config({ path: '../config/general/.env' });
 
 // handle errors
 const handleErrors = (err) => {
-  console.log(err);
   let errors = { email: '', password: '', firstName: '', lastName: '' };
 
   //Validation errors
@@ -26,6 +27,12 @@ const handleErrors = (err) => {
   return errors;
 };
 
+const maxAge = 60 * 60 * 24;
+
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: maxAge });
+};
+
 module.exports.signup = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
   try {
@@ -35,7 +42,9 @@ module.exports.signup = async (req, res) => {
       email,
       password,
     });
-    res.status(200).json(user);
+    const token = createToken(user.user_id);
+    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+    res.status(200).json({ user_id: user.user_id });
   } catch (err) {
     const errors = handleErrors(err.errors);
     res.json(errors);
@@ -43,5 +52,7 @@ module.exports.signup = async (req, res) => {
 };
 
 module.exports.login = (req, res) => {
-  res.send('new login');
+  const cookies = req.cookies;
+  console.log(cookies);
+  res.send(cookies);
 };
