@@ -1,20 +1,20 @@
-const jwt = require('jsonwebtoken');
+// services
+const { verifyToken } = require('../services/jwt');
 
-const requireAuth = (req, res, next) => {
+const requireAuth = async (req, res, next) => {
   const token = req.cookies.jwt;
 
   // check json web token exists & is verified
   if (token) {
-    jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
-      if (err) {
-        res.json('error');
-      } else {
-        req.id = decodedToken.id;
-        next();
-      }
-    });
+    try {
+      const decodedToken = await verifyToken(token, process.env.JWT_SECRET);
+      req.id = decodedToken.id;
+      next();
+    } catch (err) {
+      res.json(err.message);
+    }
   } else {
-    res.json('error');
+    res.json('You are not authorized');
   }
 };
 
