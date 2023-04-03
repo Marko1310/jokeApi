@@ -1,4 +1,7 @@
+// model
 const User = require('../models/user');
+
+// dependencies
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { Sequelize } = require('sequelize');
@@ -46,7 +49,6 @@ const createToken = (id) => {
 
 module.exports.signup = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
-  console.log(process.env.JWT_SECRET);
   try {
     const user = await User.create({
       firstName,

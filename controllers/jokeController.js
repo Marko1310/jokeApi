@@ -1,6 +1,10 @@
+// model
 const User = require('../models/user');
+
+// dependencies
 const axios = require('axios');
 
+// mail service
 const { sendJokeMail } = require('../services/nodeMailer');
 
 module.exports.sendJoke = async (req, res) => {
@@ -11,9 +15,7 @@ module.exports.sendJoke = async (req, res) => {
       const response = await axios.get(
         'https://api.chucknorris.io/jokes/random'
       );
-
       sendJokeMail(user.email, response.data.value);
-
       res.json(response.data.value);
     }
   } catch (err) {

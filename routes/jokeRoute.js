@@ -1,8 +1,14 @@
+// router
 const { Router } = require('express');
-const { sendJoke } = require('../controllers/jokeController');
-const { requireAuth } = require('../middleware/authMiddleware');
 const router = Router();
 
+// controller
+const { sendJoke } = require('../controllers/jokeController');
+
+// auth middleware
+const { requireAuth } = require('../middleware/authMiddleware');
+
+//routes
 router.get('/sendthejoke', requireAuth, sendJoke);
 
 module.exports = router;

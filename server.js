@@ -1,5 +1,4 @@
 // Import depemdencies
-
 const app = require('./app');
 
 // Setup server
@@ -19,16 +18,3 @@ db.sequelize
   .catch((error) => {
     console.log('Error syncing database:', error);
   });
-
-// Test sever
-app.get('/', (req, res) => res.status(200).json('Hello from the server'));
-
-// Test connection to database
-app.get('/testdb', (req, res) =>
-  res.status(200).json('Connection succesfull to the database')
-);
-
-// Test auth route
-app.get('/testdb', (req, res) =>
-  res.status(200).json('Connection succesfull to the database')
-);
