@@ -14,9 +14,7 @@ const User = sequelize.define(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: {
-        msg: 'The email address is already in use',
-      },
+      unique: true,
       set(value) {
         this.setDataValue('email', value.toLowerCase());
       },
@@ -24,6 +22,7 @@ const User = sequelize.define(
         isEmail: { msg: 'Please provide a valid email address' },
         notNull: { msg: 'Please provide a valid email address' },
         notEmpty: { msg: 'Please provide a valid email address' },
+        notUnique: { msg: 'Please provide a valid email address' },
       },
     },
     password: {
