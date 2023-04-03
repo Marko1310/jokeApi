@@ -21,20 +21,14 @@ db.sequelize
   });
 
 // Test sever
-app.get('/', (req, res) =>
-  res
-    .status(200)
-    .json('Hello from the server')
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json('Internal server error');
-    })
-);
+app.get('/', (req, res) => res.status(200).json('Hello from the server'));
 
 // Test connection to database
 app.get('/testdb', (req, res) =>
-  res
-    .status(200)
-    .json('Connection succesfull to the database')
-    .catch((err) => console.log(err))
+  res.status(200).json('Connection succesfull to the database')
+);
+
+// Test auth route
+app.get('/testdb', (req, res) =>
+  res.status(200).json('Connection succesfull to the database')
 );

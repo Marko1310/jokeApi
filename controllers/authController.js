@@ -1,6 +1,5 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-require('dotenv').config({ path: '../config/general/.env' });
 const bcrypt = require('bcryptjs');
 const { Sequelize } = require('sequelize');
 
@@ -24,8 +23,8 @@ const handleErrors = (err) => {
       if (error.message.toLowerCase().includes('last name')) {
         errors.lastName = error.message;
       }
-      if (error.message.toLowerCase().includes('notunique')) {
-        errors.email = 'This email already exists';
+      if (error.message.toLowerCase().includes('unique')) {
+        errors.email = 'This email address already exists';
       }
     });
   } else {
@@ -47,6 +46,7 @@ const createToken = (id) => {
 
 module.exports.signup = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
+  console.log(process.env.JWT_SECRET);
   try {
     const user = await User.create({
       firstName,
@@ -73,12 +73,13 @@ module.exports.login = async (req, res) => {
         const token = createToken(user.user_id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
         res.status(200).json({ user_id: user.user_id });
+      } else {
+        throw new Error('incorrect password');
       }
-      throw new Error('incorrect password');
+    } else {
+      throw new Error('email is not valid');
     }
-    throw new Error('email is not valid');
   } catch (err) {
-    // console.log(err);
     const errors = handleErrors(err);
     res.status(400).json(errors);
   }
