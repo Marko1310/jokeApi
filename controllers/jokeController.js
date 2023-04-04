@@ -11,7 +11,7 @@ module.exports.sendJoke = async (req, res) => {
     const user = await userService.findUserById(userId);
     if (user) {
       const response = await fetchJokeService.fetchJoke();
-      nodeMailerService.sendJokeMail(user.email, response.data.value);
+      await nodeMailerService.sendJokeMail(user.email, response.data.value);
       res.json(response.data.value);
     }
   } catch (err) {

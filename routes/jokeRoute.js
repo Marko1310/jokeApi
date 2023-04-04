@@ -10,6 +10,6 @@ const { sendJoke } = require('../controllers/jokeController');
 const { requireAuth } = require('../middleware/authMiddleware');
 
 // routes
-router.post('/sendthejoke', requireAuth, sendJoke);
+router.post('/joke/sendthejoke', requireAuth, sendJoke);
 
 module.exports = router;
