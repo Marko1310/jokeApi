@@ -9,7 +9,6 @@ const { sendJokeMail } = require('../services/nodeMailer');
 
 module.exports.sendJoke = async (req, res) => {
   const { userId } = req;
-  console.log(userId);
   try {
     const user = await userService.findUserById(userId);
     if (user) {

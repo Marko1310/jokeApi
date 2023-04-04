@@ -8,7 +8,6 @@ const requireAuth = async (req, res, next) => {
   if (token) {
     try {
       const decodedToken = await verifyToken(token, process.env.JWT_SECRET);
-      console.log(decodedToken);
       req.userId = decodedToken.userId;
       next();
     } catch (err) {
