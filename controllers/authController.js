@@ -2,14 +2,15 @@
 const User = require('../models/user');
 
 // dependencies
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { Sequelize } = require('sequelize');
+
+// services
+const { createToken, maxAge } = require('../services/jwt');
 
 // handle errors
 const handleErrors = (err) => {
   let errors = { email: '', password: '', firstName: '', lastName: '' };
-  console.log(err);
 
   //Validation errors
   if (err instanceof Sequelize.ValidationError) {
@@ -39,12 +40,6 @@ const handleErrors = (err) => {
     }
   }
   return errors;
-};
-
-const maxAge = 60 * 60 * 24;
-
-const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: maxAge });
 };
 
 module.exports.signup = async (req, res) => {

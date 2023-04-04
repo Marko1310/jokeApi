@@ -22,4 +22,5 @@ const verifyToken = (token, secret) => {
 module.exports = {
   createToken,
   verifyToken,
+  maxAge,
 };
