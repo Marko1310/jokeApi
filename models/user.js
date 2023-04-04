@@ -1,11 +1,11 @@
+const bcrypt = require('bcryptjs');
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database/database_connection');
-const bcrypt = require('bcryptjs');
 
 const User = sequelize.define(
   'user',
   {
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
@@ -53,11 +53,12 @@ const User = sequelize.define(
   },
   {
     timestamps: false,
-  }
+  },
 );
 
 User.beforeCreate(async (user) => {
   const hashedPassword = await bcrypt.hash(user.password, 10);
+  // eslint-disable-next-line no-param-reassign
   user.password = hashedPassword;
 });
 

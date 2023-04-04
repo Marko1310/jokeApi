@@ -1,5 +1,5 @@
 // services
-const { verifyToken } = require('../services/jwt');
+const { verifyToken } = require('../services/jwtService');
 
 const requireAuth = async (req, res, next) => {
   const token = req.cookies.jwt;

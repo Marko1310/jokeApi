@@ -1,18 +1,24 @@
-// model
-const User = require('../models/user');
-
 // dependencies
 const bcrypt = require('bcryptjs');
 const { Sequelize } = require('sequelize');
 
 // services
-const { createToken, maxAge } = require('../services/jwt');
+const jwtService = require('../services/jwtService');
+const userService = require('../services/userService');
+
+// constats
+const maxAge = 60 * 60 * 24;
 
 // handle errors
 const handleErrors = (err) => {
-  let errors = { email: '', password: '', firstName: '', lastName: '' };
+  const errors = {
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+  };
 
-  //Validation errors
+  // Validation errors
   if (err instanceof Sequelize.ValidationError) {
     err.errors.forEach((error) => {
       if (error.message.toLowerCase().includes('email')) {
@@ -43,15 +49,21 @@ const handleErrors = (err) => {
 };
 
 module.exports.signup = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+  } = req.body;
+
   try {
-    const user = await User.create({
+    const user = await userService.newUser(
       firstName,
       lastName,
       email,
       password,
-    });
-    const token = createToken(user.user_id);
+    );
+    const token = jwtService.createToken(user.user_id, maxAge);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.status(200).json({ user_id: user.user_id });
   } catch (err) {
@@ -63,11 +75,11 @@ module.exports.signup = async (req, res) => {
 module.exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ where: { email } });
+    const user = await userService.findUserByEmail(email);
     if (user) {
       const auth = await bcrypt.compare(password, user.password);
       if (auth) {
-        const token = createToken(user.user_id);
+        const token = jwtService.createToken(user.user_id, maxAge);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
         res.status(200).json({ user_id: user.user_id });
       } else {

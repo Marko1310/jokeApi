@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
     host: process.env.HOST,
     port: process.env.DATABASE_PORT,
     dialect: 'postgres',
-  }
+  },
 );
 
 // test connection
