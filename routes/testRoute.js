@@ -5,7 +5,7 @@ const router = Router();
 
 // routes
 router.get('/', (req, res) => {
-  res.json('Hello from the server');
+  res.status(200).json('Hello from the server');
 });
 
 module.exports = router;
