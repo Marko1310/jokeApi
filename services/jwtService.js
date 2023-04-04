@@ -2,7 +2,11 @@
 const jwt = require('jsonwebtoken');
 
 // create token
-const createToken = (id, maxAge) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: maxAge });
+const createToken = (userId, maxAge) => jwt.sign(
+  { userId },
+  process.env.JWT_SECRET,
+  { expiresIn: maxAge },
+);
 
 // verify token
 const verifyToken = (token, secret) => {

@@ -63,9 +63,9 @@ module.exports.signup = async (req, res) => {
       email,
       password,
     );
-    const token = jwtService.createToken(user.user_id, maxAge);
+    const token = jwtService.createToken(user.userId, maxAge);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(200).json({ user_id: user.user_id });
+    res.status(200).json({ userId: user.userId });
   } catch (err) {
     const errors = handleErrors(err);
     res.json(errors);
@@ -79,9 +79,9 @@ module.exports.login = async (req, res) => {
     if (user) {
       const auth = await bcrypt.compare(password, user.password);
       if (auth) {
-        const token = jwtService.createToken(user.user_id, maxAge);
+        const token = jwtService.createToken(user.userId, maxAge);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-        res.status(200).json({ user_id: user.user_id });
+        res.status(200).json({ userId: user.userId });
       } else {
         throw new Error('incorrect password');
       }

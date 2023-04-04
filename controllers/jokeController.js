@@ -8,9 +8,10 @@ const userService = require('../services/userService');
 const { sendJokeMail } = require('../services/nodeMailer');
 
 module.exports.sendJoke = async (req, res) => {
-  const userId = req.id;
+  const { userId } = req;
+  console.log(userId);
   try {
-    const user = await userService.findUserById({ where: { userId } });
+    const user = await userService.findUserById(userId);
     if (user) {
       const response = await axios.get(
         'https://api.chucknorris.io/jokes/random',
@@ -20,5 +21,6 @@ module.exports.sendJoke = async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+    res.json(err);
   }
 };
