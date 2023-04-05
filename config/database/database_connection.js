@@ -12,13 +12,13 @@ const sequelize = new Sequelize(
 );
 
 // test connection
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection succesfull!');
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// sequelize
+//   .authenticate()
+//   .then(() => {
+//     console.log('Connection succesfull!');
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 module.exports = sequelize;
