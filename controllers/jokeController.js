@@ -13,9 +13,11 @@ module.exports.sendJoke = async (req, res) => {
       const response = await fetchJokeService.fetchJoke();
       await nodeMailerService.sendJokeMail(user.email, response.data.value);
       res.json(response.data.value);
+    } else {
+      throw new Error('User not found');
     }
   } catch (err) {
     console.log(err);
-    res.status(400).json(err);
+    res.status(400).json(err.message);
   }
 };

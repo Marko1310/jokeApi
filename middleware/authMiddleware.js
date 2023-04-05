@@ -11,7 +11,7 @@ const requireAuth = async (req, res, next) => {
       req.userId = decodedToken.userId;
       next();
     } catch (err) {
-      res.json(err.message);
+      res.status(400).json(err.message);
     }
   } else {
     res.status(400).json('You are not authorized');
