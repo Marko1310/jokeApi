@@ -50,7 +50,10 @@ describe('sendJoke function', () => {
 
     await sendJoke(req, res);
     expect(userService.findUserById).toHaveBeenCalledWith(user.userId);
-    expect(nodeMailerService.sendJokeMail).toHaveBeenCalledWith(user.email, fetchJokeResponse.data.value);
+    expect(nodeMailerService.sendJokeMail).toHaveBeenCalledWith(
+      user.email,
+      fetchJokeResponse.data.value,
+    );
     expect(fetchJokeService.fetchJoke).toHaveBeenCalled();
     expect(res.json).toHaveBeenCalledWith(fetchJokeResponse.data.value);
   });

@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1680766449359" clover="3.2.0">
-  <project timestamp="1680766449360" name="All files">
-    <metrics statements="40" coveredstatements="35" conditionals="2" coveredconditionals="2" methods="9" coveredmethods="7" elements="51" coveredelements="44" complexity="0" loc="40" ncloc="40" packages="4" files="6" classes="6"/>
+<coverage generated="1680771195743" clover="3.2.0">
+  <project timestamp="1680771195743" name="All files">
+    <metrics statements="62" coveredstatements="51" conditionals="4" coveredconditionals="4" methods="11" coveredmethods="8" elements="77" coveredelements="63" complexity="0" loc="62" ncloc="62" packages="5" files="8" classes="8"/>
     <package name="config.database">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="database_connection.js" path="/Users/marko/Documents/programiranje/Projects/jokeApp/config/database/database_connection.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="controllers">
+      <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="jokeController.js" path="/Users/marko/Documents/programiranje/Projects/jokeApp/controllers/jokeController.js">
+        <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
       </file>
     </package>
     <package name="middleware">
@@ -32,24 +51,24 @@
       <metrics statements="9" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="user.js" path="/Users/marko/Documents/programiranje/Projects/jokeApp/models/user.js">
         <metrics statements="9" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
         <line num="60" count="0" type="stmt"/>
         <line num="62" count="0" type="stmt"/>
-        <line num="65" count="1" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
       </file>
     </package>
     <package name="services">
-      <metrics statements="17" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+      <metrics statements="26" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="6"/>
       <file name="fetchJokeService.js" path="/Users/marko/Documents/programiranje/Projects/jokeApp/services/fetchJokeService.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
       </file>
       <file name="jwtService.js" path="/Users/marko/Documents/programiranje/Projects/jokeApp/services/jwtService.js">
         <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -62,14 +81,26 @@
         <line num="17" count="1" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
       </file>
+      <file name="nodeMailer.js" path="/Users/marko/Documents/programiranje/Projects/jokeApp/services/nodeMailer.js">
+        <metrics statements="9" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+      </file>
       <file name="userService.js" path="/Users/marko/Documents/programiranje/Projects/jokeApp/services/userService.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
       </file>
     </package>
   </project>
