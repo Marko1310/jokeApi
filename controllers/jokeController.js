@@ -17,7 +17,6 @@ module.exports.sendJoke = async (req, res) => {
       throw new Error('User not found');
     }
   } catch (err) {
-    console.log(err);
     res.status(400).json(err.message);
   }
 };
