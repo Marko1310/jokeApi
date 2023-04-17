@@ -13,13 +13,13 @@ lastName: The user's last name
 email: The user's email address  
 password: The user's password  
 
-#### POST /api/auth/login:  
+### POST /api/auth/login:  
 Logs in a user.  
 Requires a JSON payload with the following properties:  
 email: The user's email address  
 password: The user's password
 
-GET /api/joke/sendthejoke:  
+### GET /api/joke/sendthejoke:  
 Sends a random Chuck Norris joke to the user's email address. Requires an Authorization header with a JWT token.
 
 ## Database
