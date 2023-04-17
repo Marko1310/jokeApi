@@ -38,4 +38,4 @@ Start the development server with npm run start.
 Use a tool like Postman to make requests to the API.
 
 ## Credits
-This API was created by Marko Cabo.
+This API was created by Marko Čabo.
